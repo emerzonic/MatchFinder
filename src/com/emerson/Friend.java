@@ -12,25 +12,6 @@ public class Friend {
     }
 
 
-    public static String getNums(int[] list) {
-        StringBuilder numlist = new StringBuilder();
-        for (int i = 0; i < list.length; i++) {
-            String num1 = list[i] + ", ";
-            numlist.append(num1);
-        }
-        return numlist.toString();
-    }
-
-
-
-    public int getScores() {
-
-        for (String key : this.data.keySet()) {
-            System.out.println(this.data.get(key)[0]);
-        }
-        return 1;
-    }
-
 
 
     public String getBestMatch() {
