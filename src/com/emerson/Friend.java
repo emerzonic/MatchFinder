@@ -21,6 +21,8 @@ public class Friend {
         return numlist.toString();
     }
 
+
+
     public int getScores() {
 
         for (String key : this.data.keySet()) {
@@ -28,6 +30,7 @@ public class Friend {
         }
         return 1;
     }
+
 
 
     public String getBestMatch() {
