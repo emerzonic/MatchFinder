@@ -25,17 +25,16 @@ public class Main {
         }
 
         Map<String, int[]> newFriendData = Survey.takeSurvey();
-        Friend newFriend = new Friend(newFriendData);
+        Friend newFriend = new Friend(newFriendData, "Emerson");
+        System.out.println(newFriend.getBestMatch());
 
-        for (String n:newFriendData.keySet()) {
-            System.out.println(n +" : "+ Friend.getNums(newFriendData.get(n)));
-
-
+        for (String s:Matches.getMatches().keySet()
+             ) {
+            System.out.println(s);
         }
 
-
-
-//        Friend newFriend = new Friend();
-
+//        for (String n:newFriendData.keySet()) {
+//            System.out.println(n +" : "+ Friend.getNums(newFriendData.get(n)));
+//        }
     }
 }
