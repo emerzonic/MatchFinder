@@ -12,9 +12,8 @@ public class Matches {
         return matches;
     }
 
-    public static void setMatches(String friend, int[] scores) {
-        matches.put(friend, scores);
-//        System.out.println(matches.keySet());
+    public static void setMatches(String name, int[] scores) {
+        matches.put(name, scores);
     }
 
 }

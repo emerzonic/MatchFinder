@@ -18,9 +18,10 @@ public class Survey {
                 "You feel more energetic after spending time with a group of people.",};
     }
 
+
      static Map<String, int[]> takeSurvey(){
         Map<String, int[]> result = new HashMap<>();
-        int [] score = new int[10];
+        int [] scores = new int[10];
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Take our survey to get matched up with a friend.");
@@ -32,11 +33,11 @@ public class Survey {
         for (String q:questions) {
             System.out.println("Q-"+i+". "+ q);
             System.out.println(displayOptions());
-            String input = scanner.nextLine();
-            score[i-1] = Integer.parseInt(input);
+            int input = scanner.nextInt();
+            scores[i-1] = input;
             i+=1;
         }
-        result.put(name,score);
+        result.put(name,scores);
         return result;
 
     }

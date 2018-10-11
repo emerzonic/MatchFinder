@@ -1,38 +1,60 @@
 package com.emerson;
 
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 
 public class Friend {
-    private Map<String, int[]> data;
+    public static int userCount = 0;
+    public int id;
     private String name;
+    private int[] scores;
 
-    public Friend(Map<String, int[]> data, String name) {
-        this.data = data;
+
+    public Friend(String name,int[] scores) {
         this.name = name;
+        this.scores = scores;
+        userCount++;
+        this.id = userCount;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int[] getScores() {
+        return scores;
+    }
+
+    private int getSumOfScores(){
+        int sum = 0;
+        for (int i:this.scores)
+            sum+=i;
+        return sum;
     }
 
 
 
-
     public String getBestMatch() {
-        //initialize bestMatch number that starts at the highest possible variance
         int bestMatch = 40;
         String matchedFriend = "";
-        int variance;
+        int friendTotal, variance;
 
         for (String friend : Matches.getMatches().keySet()) {
-            variance = 0;
-            for (int i = 0; i < Matches.getMatches().get(friend).length; i++) {
-                System.out.println(Matches.getMatches().get(friend)[i] + " : " + this.data.get(this.name)[i]);
-                variance += Math.abs((Matches.getMatches().get(friend)[i]) - (this.data.get(this.name)[i]));
-                System.out.println(variance);
+            friendTotal = 0;
+            int[] friendsList = Matches.getMatches().get(friend);
+            for (int score :friendsList) {
+                friendTotal+=score;
             }
+            variance = Math.abs((friendTotal) - (this.getSumOfScores()));
+            System.out.println(variance +" for "+ friend);
+
             if (variance <= bestMatch) {
                 bestMatch = variance;
                 matchedFriend = friend;
             }
         }
-        Matches.setMatches(this.name, this.data.get(this.name));
+        Matches.setMatches(this.name, this.scores);
         return matchedFriend;
     }
 
