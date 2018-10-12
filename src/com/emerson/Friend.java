@@ -35,7 +35,7 @@ public class Friend {
     }
 
 
-    //This method
+    //This method compares the new user survey scores to each friend in storage and returns a best matched
     public String getBestMatch() {
         int bestMatch = 40;
         String matchedFriend = "";
