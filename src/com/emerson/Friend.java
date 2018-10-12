@@ -1,17 +1,17 @@
 package com.emerson;
 
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Friend {
-    public static int userCount = 0;
-    public int id;
+    private static int userCount = 0;
+    private Integer id;
     private String name;
     private int[] scores;
 
 
-    public Friend(String name,int[] scores) {
+    public Friend(String name, int[] scores) {
         this.name = name;
         this.scores = scores;
         userCount++;
@@ -24,6 +24,10 @@ public class Friend {
 
     public int[] getScores() {
         return scores;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     private int getSumOfScores(){
@@ -40,21 +44,26 @@ public class Friend {
         String matchedFriend = "";
         int friendTotal, variance;
 
-        for (String friend : Matches.getMatches().keySet()) {
+
+        Set<Map.Entry<Integer, Friend>> entries = Matches.getMatches().entrySet();
+
+        for(Map.Entry<Integer, Friend> frd: entries){
+//        for (Integer id : Matches.getMatches().keySet()) {
+            Friend friend = frd.getValue();
             friendTotal = 0;
-            int[] friendsList = Matches.getMatches().get(friend);
-            for (int score :friendsList) {
+//            Object friends = Matches.getMatches().get(id);
+
+            for (int score : friend.getScores()) {
                 friendTotal+=score;
             }
             variance = Math.abs((friendTotal) - (this.getSumOfScores()));
-            System.out.println(variance +" for "+ friend);
+            System.out.println(variance +" for "+ friend.name);
 
             if (variance <= bestMatch) {
                 bestMatch = variance;
-                matchedFriend = friend;
+                matchedFriend = friend.name;
             }
         }
-        Matches.setMatches(this.name, this.scores);
         return matchedFriend;
     }
 

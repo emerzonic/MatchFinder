@@ -1,19 +1,16 @@
 package com.emerson;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Matches {
-    private static Map<String, int[]> matches = new HashMap<>();
+    private static Map<Integer, Friend> matches = new HashMap<>(100);
 
-    public static Map<String, int[]> getMatches() {
+    public static Map<Integer, Friend> getMatches() {
         return matches;
     }
 
-    public static void setMatches(String name, int[] scores) {
-        matches.put(name, scores);
+    public static void addFriend(Integer id, Friend friend) {
+        matches.put(id, friend);
     }
 
 }

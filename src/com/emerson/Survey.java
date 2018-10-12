@@ -25,7 +25,7 @@ public class Survey {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Take our survey to get matched up with a friend.");
-        System.out.println("Please enter your name.\r");
+        System.out.println("Please enter your full name.\r");
         String name = scanner.nextLine();
         System.out.println("Welcome " + name+"!\nPlease enter the number for the best option to each question.");
         String[] questions = Survey.getQuestions();
