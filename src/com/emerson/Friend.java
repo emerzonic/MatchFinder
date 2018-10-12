@@ -30,13 +30,12 @@ public class Friend {
         return id;
     }
 
-    private int getSumOfScores(){
+    private int getSumOfScores() {
         int sum = 0;
-        for (int i:this.scores)
-            sum+=i;
+        for (int i : this.scores)
+            sum += i;
         return sum;
     }
-
 
 
     public String getBestMatch() {
@@ -44,20 +43,18 @@ public class Friend {
         String matchedFriend = "";
         int friendTotal, variance;
 
-
         Set<Map.Entry<Integer, Friend>> entries = Matches.getMatches().entrySet();
 
-        for(Map.Entry<Integer, Friend> frd: entries){
-//        for (Integer id : Matches.getMatches().keySet()) {
+        for (Map.Entry<Integer, Friend> frd : entries) {
             Friend friend = frd.getValue();
             friendTotal = 0;
-//            Object friends = Matches.getMatches().get(id);
 
             for (int score : friend.getScores()) {
-                friendTotal+=score;
+                friendTotal += score;
             }
+
             variance = Math.abs((friendTotal) - (this.getSumOfScores()));
-            System.out.println(variance +" for "+ friend.name);
+            System.out.println(variance + " for " + friend.name);
 
             if (variance <= bestMatch) {
                 bestMatch = variance;

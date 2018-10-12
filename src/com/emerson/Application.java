@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Application {
 
-    static void populateUsers(){
+    static void populateUsers() {
         //Get some friends survey data to start with
         String[] currentFriends = {"Mary DeVola", "Joe Particks", "Sarah Antoe", "Eric Massola"};
 
@@ -28,7 +28,7 @@ public class Application {
     }
 
 
-    static void runApplication(){
+    static void runApplication() {
         //Prompt the user to take the survey or not
         Scanner scanner = new Scanner(System.in);
         System.out.println("W E L C O M E  TO  M A T C H F I N D E R");
