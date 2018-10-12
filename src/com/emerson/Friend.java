@@ -50,9 +50,7 @@ public class Friend {
             for (int score : friend.scores) {
                 friendTotal += score;
             }
-
             variance = Math.abs((friendTotal) - (this.getSumOfScores()));
-            System.out.println(variance + " for " + friend.name);
 
             if (variance <= bestMatch) {
                 bestMatch = variance;

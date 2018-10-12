@@ -47,7 +47,6 @@ public class Application {
                     Map<String, int[]> newFriendData = Survey.takeSurvey();
                     for (String name : newFriendData.keySet()) {
                         Friend newFriend = new Friend(name, newFriendData.get(name));
-                        System.out.println(newFriend.getId());
                         System.out.println("Based on your responses, your best match is " +
                                 newFriend.getBestMatch().toUpperCase() + ".");
                         Matches.addFriend(newFriend.getId(), newFriend);

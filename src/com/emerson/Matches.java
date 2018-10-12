@@ -9,6 +9,7 @@ public class Matches {
         return matches;
     }
 
+
     public static void addFriend(Integer id, Friend friend) {
         matches.put(id, friend);
     }
