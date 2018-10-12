@@ -22,9 +22,6 @@ public class Friend {
         return name;
     }
 
-    public int[] getScores() {
-        return scores;
-    }
 
     public Integer getId() {
         return id;
@@ -38,6 +35,7 @@ public class Friend {
     }
 
 
+    //This method
     public String getBestMatch() {
         int bestMatch = 40;
         String matchedFriend = "";
@@ -49,7 +47,7 @@ public class Friend {
             Friend friend = frd.getValue();
             friendTotal = 0;
 
-            for (int score : friend.getScores()) {
+            for (int score : friend.scores) {
                 friendTotal += score;
             }
 

@@ -64,4 +64,9 @@ public class Application {
     }
 
 
+    private static void validateInput(){
+        //TO DO: Write input validation logic
+    }
+
+
 }
