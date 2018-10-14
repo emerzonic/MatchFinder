@@ -20,7 +20,6 @@ public class Application {
                 scores[index] = score;
                 index++;
             }
-
             //Create new friend objects and add to storage
             Friend friend = new Friend(name, scores);
             Matches.addFriend(friend.getId(), friend);
@@ -61,11 +60,5 @@ public class Application {
         }
 
     }
-
-
-    private static void validateInput(){
-        //TO DO: Write input validation logic
-    }
-
 
 }

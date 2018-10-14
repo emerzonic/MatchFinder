@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Survey {
+    //This method returns a list of the ten questions
     private static String[] getQuestions() {
         return new String[]{"Your mind is always buzzing with unexplored ideas and plans.",
                 "Generally speaking, you rely more on your experience than your imagination.",
@@ -18,33 +19,38 @@ public class Survey {
                 "You feel more energetic after spending time with a group of people.",};
     }
 
-
+    //This method conducts a ten-question survey and returns the user's name and responses
     static Map<String, int[]> takeSurvey() {
         Map<String, int[]> result = new HashMap<>();
         int[] scores = new int[10];
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Take our survey to get matched up with a friend.");
-        System.out.println("Please enter your full name.\r");
+        System.out.println("Please enter your username.\r");
         String name = scanner.nextLine();
         System.out.println("Welcome " + name + "!\nPlease enter the number for the best option to each question.");
         String[] questions = Survey.getQuestions();
-        int i = 1;
-        for (String q : questions) {
-            System.out.println("Q-" + i + ". " + q);
+        int questionNumber = 1;
+
+        while (questionNumber <= 10) {
+            System.out.println(questionNumber + ". " + questions[questionNumber]);
             System.out.println(displayOptions());
-            int input = scanner.nextInt();
-            scores[i - 1] = input;
-            i += 1;
+            String input = scanner.nextLine();
+            if (!input.matches("\\d+") || Integer.parseInt(input) > 5)
+                System.out.println("Invalid Input. Select any option from 1 to 5.\n");
+            else {
+                int index = Integer.parseInt(input);
+                scores[questionNumber - 1] = index;
+                questionNumber += 1;
+            }
         }
         result.put(name, scores);
         return result;
-
     }
 
+
+    //This method returns the five options
     private static String displayOptions() {
         return "1 Strongly Disagreed\n2 Somehow Disagreed\n3 Not too sure\n4 Somehow Agreed\n5 Strongly Agreed";
     }
-
-
 }
