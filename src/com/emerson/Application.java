@@ -36,10 +36,10 @@ public class Application {
 
         while (!quit) {
             String againOrNow = surveyCount > 0 ? "again" : "now";
-            System.out.println("Will you like to take a quick survey " + againOrNow +
-                    "?. Hit y to proceed or hit any key to quit.");
-            String input = scanner.nextLine();
-
+            System.out.println("Will you like to take a quick survey " + againOrNow +"?." +
+                    "\nHit \"y\" to proceed to survey or hit any key to quit.");
+            String response = scanner.nextLine();
+            String input = response.toLowerCase();
             switch (input) {
                 case "y":
                     //Conduct new survey for incoming friend and save his/her result to a newFriendData Map

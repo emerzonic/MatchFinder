@@ -28,15 +28,15 @@ public class Survey {
         System.out.println("Take our survey to get matched up with a friend.");
         System.out.println("Please enter your username.\r");
         String name = scanner.nextLine();
-        System.out.println("Welcome " + name + "!\nPlease enter the number for the best option to each question.");
+        System.out.println("Welcome " + name + "!\nPlease enter the number for the best option to each question.\n");
         String[] questions = Survey.getQuestions();
         int questionNumber = 1;
 
         while (questionNumber <= 10) {
-            System.out.println(questionNumber + ". " + questions[questionNumber]);
+            System.out.println("#"+questionNumber + ". " + questions[questionNumber]);
             System.out.println(displayOptions());
             String input = scanner.nextLine();
-            if (!input.matches("\\d+") || Integer.parseInt(input) > 5)
+            if (!input.matches("\\d+") || Integer.parseInt(input) < 1 || Integer.parseInt(input) > 5)
                 System.out.println("Invalid Input. Select any option from 1 to 5.\n");
             else {
                 int index = Integer.parseInt(input);
