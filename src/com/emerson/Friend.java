@@ -9,6 +9,7 @@ public class Friend {
     private Integer id;
     private String name;
     private int[] scores;
+    private int sumOfScores;
 
 
     public Friend(String name, int[] scores) {
@@ -16,6 +17,7 @@ public class Friend {
         this.scores = scores;
         userCount++;
         this.id = userCount;
+        this.sumOfScores = setSumOfScores();
     }
 
     public String getName() {
@@ -27,7 +29,7 @@ public class Friend {
         return id;
     }
 
-    private int getSumOfScores() {
+    private int setSumOfScores() {
         int sum = 0;
         for (int i : this.scores)
             sum += i;
@@ -45,12 +47,12 @@ public class Friend {
 
         for (Map.Entry<Integer, Friend> frd : entries) {
             Friend friend = frd.getValue();
-            friendTotal = 0;
-
-            for (int score : friend.scores) {
-                friendTotal += score;
-            }
-            variance = Math.abs((friendTotal) - (this.getSumOfScores()));
+//            friendTotal = 0;
+//
+//            for (int score : friend.scores) {
+//                friendTotal += score;
+                variance = Math.abs((friend.sumOfScores) - (this.sumOfScores));
+//            }
 
             if (variance <= bestMatch) {
                 bestMatch = variance;

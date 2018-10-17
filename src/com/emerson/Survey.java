@@ -23,7 +23,6 @@ public class Survey {
     static Map<String, int[]> takeSurvey() {
         Map<String, int[]> result = new HashMap<>();
         int[] scores = new int[10];
-//        String red = "\u001B[31m";
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Take our survey to get matched up with a friend.");
@@ -37,12 +36,16 @@ public class Survey {
             System.out.println("#" + (questionNumber + 1) + ". " + questions[questionNumber]);
             System.out.println(displayOptions());
             String input = scanner.nextLine();
-            if (!input.matches("\\d+") || Integer.parseInt(input) < 1 || Integer.parseInt(input) > 5)
-                System.out.println("\u001B[31m" + input + " is not a valid Input. Select any option from 1 to 5.\n" + "\u001B[0m");
-            else {
+            try{
                 int index = Integer.parseInt(input);
-                scores[questionNumber] = index;
-                questionNumber += 1;
+                if(index < 5 && index >0) {
+                    scores[questionNumber] = index;
+                    questionNumber += 1;
+                }else
+                    System.out.println("\u001B[31m" + input + " is not a valid input. Enter any option from 1 to 5.\n" + "\u001B[0m");
+            }catch (NumberFormatException e){
+                System.out.println("\u001B[31m" + input + " is not a valid input. Enter any option from 1 to 5.\n" + "\u001B[0m");
+
             }
         }
         result.put(name, scores);
