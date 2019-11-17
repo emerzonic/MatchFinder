@@ -5,7 +5,12 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Survey {
-    //This method returns a list of the ten questions
+
+    private static final Scanner scanner = new Scanner(System.in);
+    private static int questionIndex = 0;
+    private static final Map<String, int[]> result = new HashMap<>();
+    private static final int[] scores = new int[10];
+
     private static String[] getQuestions() {
         return new String[]{"Your mind is always buzzing with unexplored ideas and plans.",
                 "Generally speaking, you rely more on your experience than your imagination.",
@@ -19,41 +24,55 @@ public class Survey {
                 "You feel more energetic after spending time with a group of people.",};
     }
 
-    //This method conducts a ten-question survey and returns the user's name and responses
     static Map<String, int[]> takeSurvey() {
-        Map<String, int[]> result = new HashMap<>();
-        int[] scores = new int[10];
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Take our survey to get matched up with a friend.");
-        System.out.println("Please enter your username.\r");
-        String name = scanner.nextLine();
-        System.out.println("Welcome " + name + "!\nPlease enter the number for the best option to each question.\n");
-        String[] questions = Survey.getQuestions();
-        int questionNumber = 0;
-
-        while (questionNumber <= questions.length - 1) {
-            System.out.println("#" + (questionNumber + 1) + ". " + questions[questionNumber]);
-            System.out.println(displayOptions());
-            String input = scanner.nextLine();
-            try{
-                int index = Integer.parseInt(input);
-                if(index < 5 && index >0) {
-                    scores[questionNumber] = index;
-                    questionNumber += 1;
-                }else
-                    System.out.println("\u001B[31m" + input + " is not a valid input. Enter any option from 1 to 5.\n" + "\u001B[0m");
-            }catch (NumberFormatException e){
-                System.out.println("\u001B[31m" + input + " is not a valid input. Enter any option from 1 to 5.\n" + "\u001B[0m");
-
-            }
-        }
+        String name = getUserInfo();
+        checkResponse();
         result.put(name, scores);
         return result;
     }
 
+    private static String getUserInfo() {
+        System.out.println("Take our survey to get matched up with a friend.");
+        System.out.println("Please enter your username.\r");
+        String name = scanner.nextLine();
+        System.out.println("Welcome " + name + "!\nPlease enter the number for the best option to each question.\n");
+        return name;
+    }
 
-    //This method returns the five options
+    private static void checkResponse() {
+        String[] questions = Survey.getQuestions();
+        while (questionIndex <= questions.length - 1) {
+            String question = "#" + (questionIndex + 1) + ". " + questions[questionIndex];
+            String input = getUserInput(question);
+            String errorMessage = "\u001B[31m" + input + " is not a valid input. Enter any option from 1 to 5.\n" + "\u001B[0m";
+            try{
+                checkInput(input, errorMessage);
+            }catch (NumberFormatException e){
+                System.out.println(errorMessage);
+            }
+        }
+    }
+
+    private static void checkInput(String input, String errorMessage) {
+        int index = Integer.parseInt(input);
+        if(isValidInput(index)) {
+            scores[questionIndex] = index;
+            questionIndex += 1;
+        }else {
+            System.out.println(errorMessage);
+        }
+    }
+
+    private static boolean isValidInput(int index) {
+        return index > 0 && index < 6;
+    }
+
+    private static String getUserInput(String question) {
+        System.out.println(question);
+        System.out.println(displayOptions());
+        return scanner.nextLine();
+    }
+
     private static String displayOptions() {
         return "1 Strongly Disagreed\n2 Somehow Disagreed\n3 Not too sure\n4 Somehow Agreed\n5 Strongly Agreed";
     }

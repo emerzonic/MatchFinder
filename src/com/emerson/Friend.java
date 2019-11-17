@@ -37,7 +37,6 @@ public class Friend {
     }
 
 
-    //This method compares the new user survey scores to each friend in storage and returns a best matched
     public String getBestMatch() {
         int bestMatch = 40;
         String matchedFriend = "";
@@ -45,15 +44,9 @@ public class Friend {
 
         Set<Map.Entry<Integer, Friend>> entries = Matches.getMatches().entrySet();
 
-        for (Map.Entry<Integer, Friend> frd : entries) {
-            Friend friend = frd.getValue();
-//            friendTotal = 0;
-//
-//            for (int score : friend.scores) {
-//                friendTotal += score;
+        for (Map.Entry<Integer, Friend> value : entries) {
+            Friend friend = value.getValue();
                 variance = Math.abs((friend.sumOfScores) - (this.sumOfScores));
-//            }
-
             if (variance <= bestMatch) {
                 bestMatch = variance;
                 matchedFriend = friend.name;
