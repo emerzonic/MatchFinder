@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Survey {
-
     private static final Scanner scanner = new Scanner(System.in);
     private static int questionIndex = 0;
     private static final Map<String, int[]> result = new HashMap<>();
@@ -40,10 +39,9 @@ public class Survey {
     }
 
     private static void checkResponse() {
-        String[] questions = Survey.getQuestions();
+        String[] questions = getQuestions();
         while (questionIndex <= questions.length - 1) {
-            String question = "#" + (questionIndex + 1) + ". " + questions[questionIndex];
-            String input = getUserInput(question);
+            String input = getUserInput(questions);
             String errorMessage = "\u001B[31m" + input + " is not a valid input. Enter any option from 1 to 5.\n" + "\u001B[0m";
             try{
                 checkInput(input, errorMessage);
@@ -67,7 +65,8 @@ public class Survey {
         return index > 0 && index < 6;
     }
 
-    private static String getUserInput(String question) {
+    private static String getUserInput(String[] questions) {
+        String question = "#" + (questionIndex + 1) + ". " + questions[questionIndex];
         System.out.println(question);
         System.out.println(displayOptions());
         return scanner.nextLine();
