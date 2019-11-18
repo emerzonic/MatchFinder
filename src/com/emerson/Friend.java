@@ -40,7 +40,8 @@ public class Friend {
     public String getBestMatch() {
         int bestMatch = 40;
         String matchedFriend = "";
-        int friendTotal, variance;
+        int friendTotal;
+        int variance;
 
         Set<Map.Entry<Integer, Friend>> entries = Matches.getMatches().entrySet();
 
